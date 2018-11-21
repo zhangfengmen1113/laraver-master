@@ -4,7 +4,6 @@ namespace App\Observers;
 
 use App\User;
 
-//手册：Eloquent ORM 里面的观察者
 class UserObserver
 {
     /**
@@ -15,7 +14,7 @@ class UserObserver
      */
     public function created(User $user)
     {
-        $user->email_veified_at = now();
+        $user->email_verified_at = now();
         $user->save();
     }
 

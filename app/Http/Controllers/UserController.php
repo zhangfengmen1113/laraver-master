@@ -42,7 +42,7 @@ class UserController extends Controller
         //执行登录
         $credentials = $request->only('email', 'password');
 
-        if (\Auth::attempt($credentials)) {
+        if (\Auth::attempt($credentials,$request->remember)) {
             // Authentication passed...
             return redirect()->route('index')->with('success','登录成功');
         }

@@ -19,6 +19,7 @@ class CategoryController extends Controller
     public function home()
     {
         //paginate这个方法是做分页功能的
+        //$categories = Category::all();
         //我们在文章列表页面上引用了laraver自带的方法links()
         //把Category模型类里面的所有数据存储到变量categories里面
         $categories = Category::paginate(8);

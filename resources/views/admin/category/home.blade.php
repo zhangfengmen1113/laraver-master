@@ -51,9 +51,9 @@
                 <table class="table table-sm table-nowrap card-table">
                     <thead>
                     <tr>
-                        <th>编号</th>
+                        <th>列表</th>
                         <th>文章标题</th>
-                        <th>文章作者</th>
+                        <th>作者</th>
                         <th>个性图标</th>
                         <th>动作</th>
                     </tr>

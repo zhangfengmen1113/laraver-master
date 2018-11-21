@@ -144,8 +144,33 @@
                         </ul>  <!-- / .navbar-collapse -->
                     </div>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="#">
+                        <i class="fe fe-git-branch"></i> 系统版本 <span class="badge badge-primary ml-auto">v1.1.2</span>
+                    </a>
+                </li>
 
             </ul>
+            <div class="navbar-user mt-auto d-none d-md-flex">
+
+
+                <!-- Dropup -->
+                <div class="dropup">
+                    <!-- Toggle -->
+                    <a href="#!" id="sidebarIconCopy" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="avatar avatar-sm avatar-online">
+                            <img src="https://lorempixel.com/300/300/?19769" class="avatar-img rounded-circle" alt="...">
+                        </div>
+                    </a>
+                    <!-- Menu -->
+                    <div class="dropdown-menu" aria-labelledby="sidebarIconCopy">
+                        <a href="{{route('user.loginOut')}}" class="dropdown-item">注销登录</a>
+                    </div>
+                </div>
+
+
+
+            </div>
         </div> <!-- / .container-fluid -->
     </div>
 </nav>
