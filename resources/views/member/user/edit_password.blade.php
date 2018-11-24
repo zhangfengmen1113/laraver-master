@@ -5,7 +5,7 @@
             @include('member.layouts.menu')
             <div class="col-sm-9">
                 <div class="row justify-content-center  __web-inspector-hide-shortcut__">
-                    <form action="{{route('member.user.update',auth()->user()wq)}}" method="post" class="col-sm-8" id="form-icon">
+                    <form action="{{route('member.user.update',auth()->user())}}" method="post" class="col-sm-8" id="form-icon">
                         @csrf  @method('PUT')
                             <div class="card-header">
                                 <h4>修改密码</h4>

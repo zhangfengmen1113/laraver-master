@@ -35,7 +35,7 @@
                 <a href="" class="nav-link text-muted">
                     粉丝列表
                 </a>
-                <a href="" class="nav-link text-muted">
+                <a href="{{route('member.attention',$user)}}" class="nav-link text-muted">
                     关注列表
                 </a>
                 <a href="" class="nav-link text-muted">
@@ -47,19 +47,29 @@
     <div class="card">
         <div class="card-body text-center">
             <div class="nav flex-column nav-pills">
-                <a href="" class="nav-link
-                                    text-muted">
-                    帖子管理
+                <a href="{{route('member.my_fans',$user)}}" class="nav-link text-muted {{active_class(if_route(['member.my_fans']), 'active', '')}}">
+                    @can('isMine',$user)
+                        我的粉丝
+                    @else
+                        他的粉丝
+                    @endcan
                 </a>
-                <a href="" class="nav-link
-                                    text-muted">
-                    文档管理
-                </a>
-                <a href="" class="nav-link
-                                    text-muted">
-                    会员时长
+                {{--active_class(if_route(['member.my_following']), 'active', '')这是个判断，如果member.my_following有则显示active样式，否则空字符串--}}
+                <a href="{{route('member.my_following',$user)}}" class="nav-link text-muted {{active_class(if_route(['member.my_following']), 'active', '')}}">
+                    @can('isMine',$user)
+                        我的关注
+                    @else
+                        他的关注
+                    @endcan
                 </a>
             </div>
         </div>
     </div>
 </div>
+@push('css')
+    <style>
+        .active{
+            color: cornflowerblue;!important;
+        }
+    </style>
+@endpush

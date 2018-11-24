@@ -34,7 +34,7 @@
                     <div class="row">
                         <div class="col-12 mt-5">
                             <div class="markdown editormd-html" id="content">
-                                <textarea name="content" id="" hidden cols="30" rows="10">{{$article->content}}</textarea>
+                                <textarea name="content" id=" " hidden cols="30" rows="10">{{$article->content}}</textarea>
                             </div>
                         </div>
                     </div>
@@ -57,12 +57,34 @@
                         </div>
                     </div>
                     <div class="card-footer text-muted">
-                        <a class="btn btn-white btn-block btn-xs" href="http://www.houdunren.com/member/follow/1">
-                            <i class="fa fa-plus" aria-hidden="true"></i> 关注 TA
-                        </a>
+                        @if($article->user->fans->contains(auth()->user()))
+                            <a class="btn btn-white btn-block btn-xs" href="{{route('member.attention',$article->user)}}">
+                                <i class="fa fa-plus" aria-hidden="true"></i>取消关注
+                            </a>
+                        @else
+                            <a class="btn btn-white btn-block btn-xs" href="{{route('member.attention',$article->user)}}">
+                                <i class="fa fa-plus" aria-hidden="true"></i> 关注 TA
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
+@push('js')
+    <script>
+        require(['hdjs','MarkdownIt','marked', 'highlight'], function (hdjs,MarkdownIt,marked) {
+            //将markdown转为html代码：http://hdjs.hdphp.com/771125
+            let md = new MarkdownIt();
+            let content = md.render($('textarea[name=content]').val());
+            $('#content').html(content);
+            //代码高亮
+            $(document).ready(function() {
+                $('pre code').each(function(i, block) {
+                    hljs.highlightBlock(block);
+                });
+            });
+        })
+    </script>
+@endpush

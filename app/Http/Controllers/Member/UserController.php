@@ -102,6 +102,7 @@ class UserController extends Controller
     {
         //获取所有数据
         $data = $request->all();
+        //dd(1);
         //手册：表单验证里面的有条件的添加规则
         $this->validate($request,[
             'password' => 'sometimes|required|min:3|confirmed',
@@ -120,7 +121,7 @@ class UserController extends Controller
         //执行更新
         $user->update($data);
         //跳转弹窗
-        return back()->with('success','修改密码成功');
+        return back()->with('success','操作成功');
     }
 
     /**
@@ -132,5 +133,36 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+    }
+
+    //关注和取消关注
+    public function attention(User $user)
+    {
+         //dd(1);
+        //dd($user);
+        $user->fans()->toggle(auth()->user());
+        return back();
+
+    }
+
+    //我的粉丝
+    public function myFans(User $user)
+    {
+        //dd($user);
+        //获取$user用户的粉丝
+        $fans = $user->fans()->paginate(10);
+//        dd($fans);
+        //dd($fans->toArray());
+        return view('member.user.my_fans',compact('user','fans'));
+    }
+
+    //我的关注
+    public function myFollowing(User $user)
+    {
+        //获取$user用户关注的人
+        $followings = $user->followers()->paginate(10);
+        //dd($followings);
+        //dd($followings->toArray());
+        return view('member.user.my_following',compact('user','followings'));
     }
 }

@@ -6,7 +6,7 @@ Route::get('/','Index\IndexController@index')->name('index');
 //前台管理
 Route::group(['prefix'=>'index','namespace'=>'Index','as'=>'index.'],function (){
     //首页
-    Route::get('/','Index\IndexController@index')->name('index');
+    Route::get('/','IndexController@index')->name('index');
     //资源模型类
     Route::resource('article','ArticleController');
 });
@@ -16,6 +16,12 @@ Route::group(['prefix'=>'member','namespace'=>'Member','as'=>'member.'],function
 
     //用户管理
     Route::resource('user','UserController');
+    //关注和取消关注
+    Route::get('/attention/{user}','UserController@attention')->name('attention');
+    //我的粉丝
+    Route::get('get_fans/{user}','UserController@myFans')->name('my_fans');
+    //我的关注
+    Route::get('get_following/{user}','UserController@myFollowing')->name('my_following');
 });
 
 //用户管理

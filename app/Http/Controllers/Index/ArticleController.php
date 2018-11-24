@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Index;
 use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
 use App\Models\Category;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -57,6 +58,9 @@ class ArticleController extends Controller
     //这是实现显示，展现的模板的页面
     public function show(Article $article)
     {
+        //测试获取关注或者粉丝的
+        //$user = User::find(4);
+        //dd($user->toArray());
         return view('index.article.show',compact('article'));
     }
 
