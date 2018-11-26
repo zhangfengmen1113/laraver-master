@@ -44,7 +44,11 @@ class UserController extends Controller
 
         if (\Auth::attempt($credentials,$request->remember)) {
             // Authentication passed...
-            return redirect()->route('index')->with('success','登录成功');
+            if ($request->from){
+
+                return redirect($request->from)->with('success','登录成功');
+            }
+            return redirect('/')->with('success','登录成功');
         }
         //反之刷新页面，登录失败
         return redirect()->back()->with('danger','输入有误');

@@ -18,4 +18,16 @@ class Article extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    //定义zan多态关联
+    public function zan(){
+        //morphMany(模型关联，数据迁移)
+        return $this->morphMany(Zan::class,'zan');
+    }
+
+    //定义enshrine多态关联
+    public function enshrine(){
+        //morphMany(模型关联，数据迁移)
+        return $this->morphMany(Enshrine::class,'enshrine');
+    }
 }

@@ -165,4 +165,18 @@ class UserController extends Controller
         //dd($followings->toArray());
         return view('member.user.my_following',compact('user','followings'));
     }
+
+    //我的收藏
+    public function myLike(User $user)
+    {
+        $categorise = Category::all();
+        return view('member.user.my_like',compact('user','categorise'));
+    }
+
+    //我的点赞
+    public function myEnshrine(User $user)
+    {
+        $categorise = Category::all();
+        return view('member.user.my_enshrine',compact('user','categorise'));
+    }
 }

@@ -7,8 +7,14 @@ Route::get('/','Index\IndexController@index')->name('index');
 Route::group(['prefix'=>'index','namespace'=>'Index','as'=>'index.'],function (){
     //首页
     Route::get('/','IndexController@index')->name('index');
-    //资源模型类
+    //文章管理
     Route::resource('article','ArticleController');
+    //评论
+    Route::resource('comment','CommentController');
+    //点赞 取消赞
+    Route::get('zan/like','ZanController@like')->name('zan.like');
+    //收藏 取消收藏
+    Route::get('enshrine/ens','EnshrineController@ens')->name('enshrine.ens');
 });
 
 //会员中心
@@ -22,6 +28,10 @@ Route::group(['prefix'=>'member','namespace'=>'Member','as'=>'member.'],function
     Route::get('get_fans/{user}','UserController@myFans')->name('my_fans');
     //我的关注
     Route::get('get_following/{user}','UserController@myFollowing')->name('my_following');
+    //我的收藏
+    Route::get('get_like/{user}','UserController@myLike')->name('my_like');
+    //我的点赞
+    Route::get('get_enshrine/{user}','UserController@myEnshrine')->name('my.enshrine');
 });
 
 //用户管理
