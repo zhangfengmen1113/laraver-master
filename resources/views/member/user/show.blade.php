@@ -91,11 +91,11 @@
                                                         <i class="fe fe-more-vertical"></i>
                                                     </a>
                                                     <div class="dropdown-menu dropdown-menu-right">
-                                                        <a href="" class="dropdown-item">
+                                                        <a href="{{route('index.article.show',$article)}}" class="dropdown-item">
                                                             查看详情
                                                         </a>
                                                         @can('update',$article)
-                                                        <a href="" class="dropdown-item">
+                                                        <a href="{{route('index.article.edit',$article)}}" class="dropdown-item">
                                                             编辑
                                                         </a>
                                                         @endcan
@@ -104,7 +104,7 @@
                                                         <a href="javascript:;" onclick="del(this)" class="dropdown-item">
                                                             删除
                                                         </a>
-                                                        <form action="" method="post">
+                                                        <form action="{{route('member.user.destroy',$article)}}" method="post">
                                                             @csrf @method('DELETE')
                                                         </form>
                                                         @endcan

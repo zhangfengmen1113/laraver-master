@@ -12,11 +12,14 @@
     <link rel="stylesheet" href="{{asset('org/assets')}}/libs/select2/dist/css/select2.min.css">
     <link rel="stylesheet" href="{{asset('org/assets')}}/libs/flatpickr/dist/flatpickr.min.css">
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_839711_tsh46r0x4g.css">
+
     <meta name="csrf-token" content="{{csrf_token()}}">
+    @stack('css')
     <!-- Theme CSS -->
     <link rel="stylesheet" href="{{asset('org/assets')}}/css/theme.min.css">
 
-    <title>论坛坛</title>
+    <title>{{hd_config('base.title')}}</title>
 </head>
 <body>
 
@@ -31,242 +34,113 @@
         </button>
 
         <!-- Brand -->
-        <a class="navbar-brand mr-auto" href="index.html">
-            <img src="{{asset('org/assets')}}/img/logo.svg" alt="..." class="navbar-brand-img">
+        <a class="navbar-brand mr-auto" href="{{route('index')}}">
+            <span class="iconfont icon-tianjinhangkong_GX"></span>
         </a>
 
         <!-- Form -->
-        <form class="form-inline mr-4 d-none d-lg-flex">
+        <form class="form-inline mr-4 d-none d-lg-flex" action="{{route('index.search')}}">
             <div class="input-group input-group-rounded input-group-merge" data-toggle="lists" data-lists-values='["name"]'>
 
                 <!-- Input -->
-                <input type="search" class="form-control form-control-prepended  dropdown-toggle search" data-toggle="dropdown" placeholder="Search" aria-label="Search">
+                <input type="search" name="wd" class="form-control form-control-prepended  dropdown-toggle search" data-toggle="dropdown" placeholder="快爱我！" aria-label="Search">
                 <div class="input-group-prepend">
                     <div class="input-group-text">
                         <i class="fe fe-search"></i>
                     </div>
                 </div>
-
-                <!-- Menu -->
-                <div class="dropdown-menu dropdown-menu-card">
-                    <div class="card-body">
-
-                        <!-- List group -->
-                        <div class="list-group list-group-flush list my--3">
-                            <a href="team-overview.html" class="list-group-item px-0">
-                                <div class="row align-items-center">
-                                    <div class="col-auto">
-
-                                        <!-- Avatar -->
-                                        <div class="avatar">
-                                            <img src="{{asset('org/assets')}}/img/avatars/teams/team-logo-1.jpg" alt="..." class="avatar-img rounded">
-                                        </div>
-
-                                    </div>
-                                    <div class="col ml--2">
-
-                                        <!-- Title -->
-                                        <h4 class="text-body mb-1 name">
-                                            Airbnb
-                                        </h4>
-
-                                        <!-- Time -->
-                                        <p class="small text-muted mb-0">
-                                            <span class="fe fe-clock"></span> <time datetime="2018-05-24">Updated 2hr ago</time>
-                                        </p>
-
-                                    </div>
-                                </div> <!-- / .row -->
-                            </a>
-                            <a href="team-overview.html" class="list-group-item px-0">
-                                <div class="row align-items-center">
-                                    <div class="col-auto">
-
-                                        <!-- Avatar -->
-                                        <div class="avatar">
-                                            <img src="{{asset('org/assets')}}/img/avatars/teams/team-logo-2.jpg" alt="..." class="avatar-img rounded">
-                                        </div>
-
-                                    </div>
-                                    <div class="col ml--2">
-
-                                        <!-- Title -->
-                                        <h4 class="text-body mb-1 name">
-                                            Medium Corporation
-                                        </h4>
-
-                                        <!-- Time -->
-                                        <p class="small text-muted mb-0">
-                                            <span class="fe fe-clock"></span> <time datetime="2018-05-24">Updated 2hr ago</time>
-                                        </p>
-
-                                    </div>
-                                </div> <!-- / .row -->
-                            </a>
-                            <a href="project-overview.html" class="list-group-item px-0">
-
-                                <div class="row align-items-center">
-                                    <div class="col-auto">
-
-                                        <!-- Avatar -->
-                                        <div class="avatar avatar-4by3">
-                                            <img src="{{asset('org/assets')}}/img/avatars/projects/project-1.jpg" alt="..." class="avatar-img rounded">
-                                        </div>
-
-                                    </div>
-                                    <div class="col ml--2">
-
-                                        <!-- Title -->
-                                        <h4 class="text-body mb-1 name">
-                                            Homepage Redesign
-                                        </h4>
-
-                                        <!-- Time -->
-                                        <p class="small text-muted mb-0">
-                                            <span class="fe fe-clock"></span> <time datetime="2018-05-24">Updated 4hr ago</time>
-                                        </p>
-
-                                    </div>
-                                </div> <!-- / .row -->
-
-                            </a>
-                            <a href="project-overview.html" class="list-group-item px-0">
-
-                                <div class="row align-items-center">
-                                    <div class="col-auto">
-
-                                        <!-- Avatar -->
-                                        <div class="avatar avatar-4by3">
-                                            <img src="{{asset('org/assets')}}/img/avatars/projects/project-2.jpg" alt="..." class="avatar-img rounded">
-                                        </div>
-
-                                    </div>
-                                    <div class="col ml--2">
-
-                                        <!-- Title -->
-                                        <h4 class="text-body mb-1 name">
-                                            Travels & Time
-                                        </h4>
-
-                                        <!-- Time -->
-                                        <p class="small text-muted mb-0">
-                                            <span class="fe fe-clock"></span> <time datetime="2018-05-24">Updated 4hr ago</time>
-                                        </p>
-
-                                    </div>
-                                </div> <!-- / .row -->
-
-                            </a>
-                            <a href="project-overview.html" class="list-group-item px-0">
-
-                                <div class="row align-items-center">
-                                    <div class="col-auto">
-
-                                        <!-- Avatar -->
-                                        <div class="avatar avatar-4by3">
-                                            <img src="{{asset('org/assets')}}/img/avatars/projects/project-3.jpg" alt="..." class="avatar-img rounded">
-                                        </div>
-
-                                    </div>
-                                    <div class="col ml--2">
-
-                                        <!-- Title -->
-                                        <h4 class="text-body mb-1 name">
-                                            Safari Exploration
-                                        </h4>
-
-                                        <!-- Time -->
-                                        <p class="small text-muted mb-0">
-                                            <span class="fe fe-clock"></span> <time datetime="2018-05-24">Updated 4hr ago</time>
-                                        </p>
-
-                                    </div>
-                                </div> <!-- / .row -->
-
-                            </a>
-                            <a href="profile-posts.html" class="list-group-item px-0">
-
-                                <div class="row align-items-center">
-                                    <div class="col-auto">
-
-                                        <!-- Avatar -->
-                                        <div class="avatar">
-                                            <img src="{{asset('org/assets')}}/img/avatars/profiles/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
-                                        </div>
-
-                                    </div>
-                                    <div class="col ml--2">
-
-                                        <!-- Title -->
-                                        <h4 class="text-body mb-1 name">
-                                            Dianna Smiley
-                                        </h4>
-
-                                        <!-- Status -->
-                                        <p class="text-body small mb-0">
-                                            <span class="text-success">●</span> Online
-                                        </p>
-
-                                    </div>
-                                </div> <!-- / .row -->
-
-                            </a>
-                            <a href="profile-posts.html" class="list-group-item px-0">
-
-                                <div class="row align-items-center">
-                                    <div class="col-auto">
-
-                                        <!-- Avatar -->
-                                        <div class="avatar">
-                                            <img src="{{asset('org/assets')}}/img/avatars/profiles/avatar-2.jpg" alt="..." class="avatar-img rounded-circle">
-                                        </div>
-
-                                    </div>
-                                    <div class="col ml--2">
-
-                                        <!-- Title -->
-                                        <h4 class="text-body mb-1 name">
-                                            Ab Hadley
-                                        </h4>
-
-                                        <!-- Status -->
-                                        <p class="text-body small mb-0">
-                                            <span class="text-danger">●</span> Offline
-                                        </p>
-
-                                    </div>
-                                </div> <!-- / .row -->
-
-                            </a>
-                        </div>
-
-                    </div>
-                </div> <!-- / .dropdown-menu -->
-
             </div>
         </form>
 
         <!-- User -->
         <div class="navbar-user">
-
+        @auth()
             <!-- Dropdown -->
             <div class="dropdown mr-4 d-none d-lg-flex">
 
                 <!-- Toggle -->
                 <a href="#" class="text-muted" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <span class="icon active">
+              <span class="icon @if(auth()->user()->unreadNotifications()->count() != 0) active @endif">
                 <i class="fe fe-bell"></i>
               </span>
                 </a>
-            </div>
 
+                <!-- Menu -->
+                <div class="dropdown-menu dropdown-menu-right dropdown-menu-card">
+                    <div class="card-header">
+                        <div class="row align-items-center">
+                            <div class="col">
+
+                                <!-- Title -->
+                                <h5 class="card-header-title">
+                                    消息({{auth()->user()->unreadNotifications()->count()}})
+                                </h5>
+
+                            </div>
+                            <div class="col-auto">
+
+                                <!-- Link -->
+                                <a href="{{route('member.notify',auth()->user())}}" class="small" style="color: black">
+                                    所有消息
+                                </a>
+
+                            </div>
+                        </div> <!-- / .row -->
+                    </div> <!-- / .card-header -->
+                    <div class="card-body">
+                        @if(auth()->user()->unreadNotifications()->count() != 0)
+
+                            <!-- List group -->
+                            <div class="list-group list-group-flush my--3">
+                                 @foreach(auth()->user()->unreadNotifications()->limit(3)->get() as $notification)
+                                    <a class="list-group-item px-0" href="{{route('member.notify.show',$notification)}}">
+
+                                        <div class="row">
+                                            <div class="col-auto">
+
+                                                <!-- Avatar -->
+                                                <div class="avatar avatar-sm">
+                                                    <img src="{{$notification['data']['user_icon']}}" alt="..." class="avatar-img rounded-circle">
+                                                </div>
+
+                                            </div>
+                                            <div class="col ml--2">
+
+                                                <!-- Content -->
+                                                <div class="small text-muted">
+                                                    <strong class="text-body">{{$notification['data']['user_name']}}</strong> 评论了
+                                                    <strong class="text-body">{{$notification['data']['article_title']}}</strong>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-auto">
+
+                                                <small class="text-muted">
+                                                    {{$notification->created_at->diffForHumans()}}
+                                                </small>
+
+                                            </div>
+                                        </div> <!-- / .row -->
+
+                                    </a>
+                                 @endforeach
+                            </div>
+                        @else
+                          <p class="text-muted text-center">暂无消息</p>
+                        @endif
+                    </div>
+                </div>
+            </div>
+            @endauth
             {{--写入文章--}}
             <div class="dropdown mr-4 d-none d-lg-flex">
 
                 <!-- Toggle -->
                 <a href="{{route('index.article.create')}}" class="text-muted">
               <span class="active">
-                <i class="fe fe-edit-2"></i>
+                  @auth()
+                    <i class="fe fe-edit-2"></i>
+                  @endauth
               </span>
                 </a>
             </div>
@@ -295,6 +169,7 @@
 
         </div>
         <!-- Collapse -->
+
         <div class="collapse navbar-collapse mr-auto order-lg-first" id="navbar">
 
             <!-- Form -->
@@ -310,13 +185,13 @@
                     </a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="{{route('index.article.index')}}" id="topnavPages">
-                        文章
+                    <a class="nav-link fa fa-dashcube" style="margin-top: 5px" href="{{route('index.article.index')}}" id="topnavPages">
+                        论坛说
                     </a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#!" id="topnavAuth">
-                        留言
+                    <a class="nav-link fa fa-info" style="margin-top: 5px" href="#!" id="topnavAuth">
+                        留信
                     </a>
                 </li>
             </ul>

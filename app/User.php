@@ -4,6 +4,9 @@ namespace App;
 
 use App\Models\Article;
 use App\Models\Attachment;
+use App\Models\Enshrine;
+use App\Models\Zan;
+use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -30,6 +33,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    //重新写 数据库通知中获取所有通知的notifications方法
+    public function notifications()
+    {
+        return $this->morphMany(DatabaseNotification::class, 'notifiable')->orderBy('read_at', 'asc')->orderBy('created_at', 'desc');
+    }
     public function getIconAttribute($key)
     {
         //dd($key);
@@ -52,6 +60,18 @@ class User extends Authenticatable
     public function attachment(){
 
         return $this->hasMany(Attachment::class);
+    }
+
+    //用户关联 zan
+    public function zan(){
+
+        return $this->hasMany(Zan::class);
+    }
+
+    //用户关联 enshrine
+    public function enshrine(){
+
+        return $this->hasMany(Enshrine::class);
     }
 
 }

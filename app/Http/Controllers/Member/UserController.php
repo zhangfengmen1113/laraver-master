@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Member;
 
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Enshrine;
+use App\Models\Zan;
 use App\User;
 use foo\bar;
 use Illuminate\Http\Request;
@@ -48,6 +50,7 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
+    //首页 我的文章
     public function show(User $user,Request $request)
     {
         //接受category参数
@@ -132,7 +135,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+
     }
 
     //关注和取消关注
@@ -166,17 +169,31 @@ class UserController extends Controller
         return view('member.user.my_following',compact('user','followings'));
     }
 
-    //我的收藏
-    public function myLike(User $user)
+    //我的点赞
+    public function myLike(User $user,Request $request,Zan $zan,Article $article)
     {
-        $categorise = Category::all();
-        return view('member.user.my_like',compact('user','categorise'));
+        //获取参数
+        $type = $request->query('type');
+        //dd($type);
+        //dd($zan);
+        $data = [];
+        $zanData = $user->zan()->where('zan_type','App\Models\\' . ucfirst($type))->paginate(10);
+        //dd($zanData);
+        return view('member.user.my_zan_'.$type,compact('user','zanData','zan','article'));
     }
 
-    //我的点赞
-    public function myEnshrine(User $user)
-    {
-        $categorise = Category::all();
-        return view('member.user.my_enshrine',compact('user','categorise'));
+    //我的收藏
+    public function myEnshrine(User $user,Article $article,Request $request,Enshrine $enshrine){
+        //dd(1);
+        //dd($user);
+        // dd($article);
+        //获取参数
+        $type = $request->query('type');
+        //dd($type);
+        $enshrineData = $user->enshrine()->where('enshrine_type','App\Models\\'.ucfirst($type))->paginate(10);
+        //dd($enshrineData);
+        //dd($enshrine);
+        return view('member.user.my_enshrine',compact('user','enshrineData','enshrine','article'));
     }
+
 }

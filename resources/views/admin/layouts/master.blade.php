@@ -12,8 +12,9 @@
     <link rel="stylesheet" href="{{asset('org/assets')}}/libs/quill/dist/quill.core.css">
     <link rel="stylesheet" href="{{asset('org/assets')}}/libs/select2/dist/css/select2.min.css">
     <link rel="stylesheet" href="{{asset('org/assets')}}/libs/flatpickr/dist/flatpickr.min.css">
-
+    <meta name="csrf-token" content="{{csrf_token()}}">
     <!-- Theme CSS -->
+    @stack('css')
     <link rel="stylesheet" href="{{asset('org/assets')}}/css/theme.min.css">
 
     <title>后台管理</title>
@@ -31,7 +32,7 @@
         </button>
 
         <!-- Brand -->
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="{{route('index')}}">
             <img src="{{asset('org/assets')}}/img/logo.svg" class="navbar-brand-img
           mx-auto" alt="...">
         </a>
@@ -49,13 +50,6 @@
                     </div>
                 </a>
 
-                <!-- Menu -->
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="sidebarIcon">
-                    <a href="profile-posts.html" class="dropdown-item">Profile</a>
-                    <a href="settings.html" class="dropdown-item">Settings</a>
-                    <hr class="dropdown-divider">
-                    <a href="sign-in.html" class="dropdown-item">Logout</a>
-                </div>
 
             </div>
 
@@ -85,9 +79,15 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('admin.category.index')}}">
-                        <i class="fe fe-file"></i> 管理系统
+                        <i class="fe fe-folder"></i> 管理首页
                     </a>
-                    <div class="collapse show" id="sidebarPages">
+                </li>
+                <li class="nav-item">
+                    {{--<a class="nav-link" href="{{route('admin.category.index')}}">--}}
+                    <a class="nav-link" href="#sidebarPages" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
+                        <i class="fe fe-inbox"></i> 管理系统
+                    </a>
+                    <div class="collapse" id="sidebarPages">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a href="{{route('admin.category.home')}}" class="nav-link">
@@ -103,45 +103,68 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#sidebarPages" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarPages">
-                        <i class="fe fe-user"></i> 用户信息
+                    <a class="nav-link" href="#sidebarLayouts" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
+                        <i class="fe fe-layout"></i> 网站配置
                     </a>
-                    <div class="collapse show" id="sidebarPages">
+                    <div class="collapse" id="sidebarLayouts">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="#sidebarProfile" class="nav-link" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarProfile">
-                                    会员专属
+                                <a href="{{route('admin.config.edit',['name'=>'base'])}}" class="nav-link">
+                                    基础配置
+                                </a>
+                                <a href="{{route('admin.config.edit',['name'=>'upload'])}}" class="nav-link">
+                                    上传配置
+                                </a>
+                                <a href="{{route('admin.config.edit',['name'=>'mail'])}}" class="nav-link">
+                                    邮件配置
+                                </a>
+                                <a href="{{route('admin.config.edit',['name'=>'search'])}}" class="nav-link">
+                                    搜索配置
+                                </a>
+                                <a href="{{route('admin.config.edit',['name'=>'wechat'])}}" class="nav-link">
+                                    微信配置
+                                </a>
+                                <a href="{{route('admin.config.edit',['name'=>'code'])}}" class="nav-link">
+                                    验证码配置
                                 </a>
                             </li>
                         </ul>  <!-- / .navbar-collapse -->
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#sidebarPages" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarPages">
-                        <i class="fe fe-globe"></i> 最新资讯
+                    <a class="nav-link" href="#sidebarWechat" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAuth">
+                        <i class="fe fe-message-square"></i> 微信管理
                     </a>
-                    <div class="collapse show" id="sidebarPages">
+                    <div class="collapse show" id="sidebarWechat">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="#sidebarProfile" class="nav-link" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarProfile">
-                                    详细新闻
+                                <a href="{{route('wechat.button.index')}}" class="nav-link" >
+                                    微信菜单
                                 </a>
+
                             </li>
-                        </ul>  <!-- / .navbar-collapse -->
+                            <li class="nav-item">
+                                <a href="{{route('wechat.reply.index')}}" class="nav-link" >
+                                    基本回复
+                                </a>
+
+                            </li>
+                        </ul>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#sidebarPages" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="sidebarPages">
-                        <i class="fe fe-message-circle"></i> 关于我们
+                    <a class="nav-link" href="#sidebarImage" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAuth">
+                        <i class="fe fe fe-image"></i> 轮播图设置
                     </a>
-                    <div class="collapse show" id="sidebarPages">
+                    <div class="collapse" id="sidebarImage">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="#sidebarProfile" class="nav-link" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarProfile">
-                                    联系我们
+                                <a href="{{route('pager.photo.index')}}" class="nav-link" >
+                                    图片Manage
                                 </a>
+
                             </li>
-                        </ul>  <!-- / .navbar-collapse -->
+                        </ul>
                     </div>
                 </li>
                 <li class="nav-item">
@@ -153,15 +176,19 @@
             </ul>
             <div class="navbar-user mt-auto d-none d-md-flex">
 
+                <a href="{{route('member.user.show',auth()->user())}}" class="btn btn-info" style="text-align: center;display: inline-block;width: 30px;height: 10px;font-size: 12px;line-height: 10px;margin-right: 5px">
+                    <p style="text-align: center;margin-top: -5px;margin-left: -3px">❤</p>
+                </a>
 
                 <!-- Dropup -->
                 <div class="dropup">
                     <!-- Toggle -->
                     <a href="#!" id="sidebarIconCopy" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div class="avatar avatar-sm avatar-online">
-                            <img src="https://lorempixel.com/300/300/?19769" class="avatar-img rounded-circle" alt="...">
+                            <img src="{{asset('org/img/gyp.jpg')}}" class="avatar-img rounded-circle" alt="...">
                         </div>
                     </a>
+
                     <!-- Menu -->
                     <div class="dropdown-menu" aria-labelledby="sidebarIconCopy">
                         <a href="{{route('user.loginOut')}}" class="dropdown-item">注销登录</a>
@@ -179,7 +206,7 @@
 ================================================== -->
 <div class="main-content">
 
-   @yield('content');
+   @yield('content')
 
 </div>
 

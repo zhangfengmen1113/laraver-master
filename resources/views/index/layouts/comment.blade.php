@@ -2,7 +2,7 @@
     <div class="card-body">
 
         <!-- Comments -->
-        <div class="comment mb-3" v-for="v in comments">
+        <div class="comment mb-3" v-for="v in comments" :id="'comment'+v.id">
             <div class="row">
                 <div class="col-auto">
 
@@ -95,6 +95,9 @@
                                 hljs.highlightBlock(block);
                             });
                         });
+                        //滚动页面
+                        //alert(location.hash);
+                        hdjs.scrollTo('body',location.hash,1000, {queue:true});
                     },
                     methods: {
                         //提交评论
@@ -174,7 +177,6 @@
                                   //console.log(this.comments);
                                 this.comments.forEach((v)=>{
                                      v.content = md.render(v.content);
-                                     v.zan_num = v.zan.length;
                                 });
                             });
                     },

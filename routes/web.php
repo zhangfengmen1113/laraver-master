@@ -15,6 +15,8 @@ Route::group(['prefix'=>'index','namespace'=>'Index','as'=>'index.'],function ()
     Route::get('zan/like','ZanController@like')->name('zan.like');
     //收藏 取消收藏
     Route::get('enshrine/ens','EnshrineController@ens')->name('enshrine.ens');
+    //搜索
+    Route::get('search','IndexController@search')->name('search');
 });
 
 //会员中心
@@ -28,10 +30,14 @@ Route::group(['prefix'=>'member','namespace'=>'Member','as'=>'member.'],function
     Route::get('get_fans/{user}','UserController@myFans')->name('my_fans');
     //我的关注
     Route::get('get_following/{user}','UserController@myFollowing')->name('my_following');
-    //我的收藏
-    Route::get('get_like/{user}','UserController@myLike')->name('my_like');
     //我的点赞
+    Route::get('get_like/{user}','UserController@myLike')->name('my.like');
+    //我的收藏
     Route::get('get_enshrine/{user}','UserController@myEnshrine')->name('my.enshrine');
+    //我的消息
+    Route::get('notify/{user}','NotifyController@index')->name('notify');
+    //标记已读
+    Route::get('notify/show/{notify}','NotifyController@show')->name('notify.show');
 });
 
 //用户管理
@@ -69,4 +75,25 @@ Route::group(['middleware'=>['admin.auth'],'prefix'=>'admin','namespace'=>'Admin
     //创建控制器指定模型
     //artisan make:controller --model=Models/Category Admin/CategoryController
     Route::resource('category','CategoryController');
+    //配置项管理
+    Route::get('config/edit/{name}','ConfigControlloer@edit')->name('config.edit');
+    Route::post('config/update/{name}','ConfigControlloer@update')->name('config.update');
+});
+
+//微信配置
+Route::group(['prefix'=>'wechat','namespace'=>'Wechat','as'=>'wechat.'],function (){
+    //菜单管理
+    Route::resource('button','ButtonController');
+    //推送到微信上去的路由
+    Route::get('button/push/{button}','ButtonController@push')->name('button.push');
+    //微信通信地址
+    Route::get('api/port','ApiController@port')->name('api.port');
+    //文本回复
+    Route::resource('reply','RepliesController');
+});
+
+//轮播图设置
+Route::group(['prefix'=>'pager','namespace'=>'Pager','as'=>'pager.'],function (){
+    //Img管理
+    Route::resource('photo','PhotoController');
 });

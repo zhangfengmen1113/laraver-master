@@ -1,0 +1,30 @@
+.mobile {
+  height: 600px;
+  border: 1px solid #b8daff;
+  display: flex;
+}
+.mobile .mobile-container {
+  display: flex;
+  flex: 1;
+}
+.mobile .mobile-container dl {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex: 1;
+  flex-direction: column-reverse;
+}
+.mobile .mobile-container dl dt {
+  padding: 5px;
+  text-align: center;
+  background: #e2e3e3;
+  border: 1px solid white;
+}
+.mobile .mobile-container dl dd {
+  margin: 0;
+  padding: 5px;
+  text-align: center;
+  background: #eaffea;
+  border: 1px solid white;
+}
+/*# sourceMappingURL=button.css.map */

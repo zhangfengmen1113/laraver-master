@@ -13,4 +13,10 @@ class Enshrine extends Model
 
         return $this->belongsTo(User::class);
     }
+
+    //多态，获取多态关联模型Article
+    public function belongsModel(){
+
+        return $this->morphTo('enshrine');
+    }
 }

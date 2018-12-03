@@ -44,7 +44,8 @@ class UploadController extends Controller
     //处理图片大小
     private function checkSize($file){
         //$file->getSize();
-        if ($file->getSize() > 2000000){
+        if ($file->getSize() > hd_config('upload.size')){
+            //dd(hd_config('upload.size'));
            //return  ['message' =>'图片大小不符合', 'code' => 403]
            //我们使用异常类处理上传异常
            //创建异常类:exception
@@ -54,8 +55,11 @@ class UploadController extends Controller
 
     //处理图片类型
     private function checkType($file){
-        if(!in_array(strtolower($file->getClientOriginalExtension()),['jpg','png','jpeg','gif'])){
+        //dd(hd_config('upload.type'));
+        //dd(explode('/',hd_config('upload.type')));
+        if(!in_array(strtolower($file->getClientOriginalExtension()),explode('/',hd_config('upload.type')))){
             //return  ['message' =>'类型不允许', 'code' => 403]
+            //dd(hd_config('upload.type'));
             throw new UploadException('图片类型不对呀~');
         }
     }

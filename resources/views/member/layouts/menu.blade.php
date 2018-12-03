@@ -1,4 +1,4 @@
-<div class="col-sm-3">
+<div class="col-sm-3" id="#dd">
     <div class="card">
         <div class="card-block text-center pt-5">
             <div class="avatar avatar-xxl">
@@ -30,12 +30,12 @@
                         修改昵称
                     </a>
                 </div>
+                <div class="nav flex-column nav-pills ">
+                    <a href="{{route('member.notify',$user)}}" class="nav-link text-muted {{active_class(if_route(['member.notify']), 'active', '')}}">
+                        消息中心
+                    </a>
+                </div>
             @endcan
-            <div class="nav flex-column nav-pills ">
-                <a href="" class="nav-link text-muted">
-                    消息中心
-                </a>
-            </div>
         </div>
     </div>
     <div class="card">
@@ -57,7 +57,7 @@
                     @endcan
                 </a>
 
-                <a href="{{route('member.my.enshrine',$user)}}" class="nav-link text-muted {{active_class(if_route(['member.my.enshrine']), 'active', '')}}">
+                <a href="{{route('member.my.like',[$user,'type'=>'article'])}}" class="nav-link text-muted {{active_class(if_route(['member.my_like']), 'active', '')}}">
                     @can('isMine',$user)
                         我的点赞
                     @else
@@ -65,7 +65,7 @@
                     @endcan
                 </a>
                 {{--active_class(if_route(['member.my_following']), 'active', '')这是个判断，如果member.my_following有则显示active样式，否则空字符串--}}
-                <a href="{{route('member.my_like',$user)}}" class="nav-link text-muted {{active_class(if_route(['member.my_like']), 'active', '')}}">
+                <a href="{{route('member.my.enshrine',[$user,'type'=>'article'])}}" class="nav-link text-muted {{active_class(if_route(['member.my.enshrine']), 'active', '')}}">
                     @can('isMine',$user)
                         我的收藏
                     @else
@@ -78,7 +78,7 @@
 </div>
 @push('css')
     <style>
-        .active{
+       #dd .active{
             color: white;!important;
         }
     </style>
