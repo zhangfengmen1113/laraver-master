@@ -14,6 +14,7 @@ class CreateCommentsTable extends Migration
     public function up()
     {
         Schema::create('comments', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->unsignedInteger('article_id')->index()->default(0)->comment('评论的文章');
             $table->unsignedInteger('user_id')->index()->default(0)->comment('评论的用户');

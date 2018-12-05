@@ -87,13 +87,25 @@ Route::group(['prefix'=>'wechat','namespace'=>'Wechat','as'=>'wechat.'],function
     //推送到微信上去的路由
     Route::get('button/push/{button}','ButtonController@push')->name('button.push');
     //微信通信地址
-    Route::get('api/port','ApiController@port')->name('api.port');
+    Route::any('api/port','ApiController@port')->name('api.port');
     //文本回复
     Route::resource('reply','RepliesController');
+    //图文回复
+    Route::resource('teletext','TeletextController');
+    //基本回复
+    Route::resource('focus','FocusController');
 });
 
 //轮播图设置
 Route::group(['prefix'=>'pager','namespace'=>'Pager','as'=>'pager.'],function (){
     //Img管理
     Route::resource('photo','PhotoController');
+});
+
+//管理员权限
+Route::group(['prefix'=>'role','namespace'=>'Role','as'=>'role.'],function (){
+    //角色管理
+    Route::resource('role','RoleController');
+    //权限列表
+    Route::get('permission/index','PermissionController@index')->name('permission.index');
 });

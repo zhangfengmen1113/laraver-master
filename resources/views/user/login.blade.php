@@ -53,7 +53,7 @@
                     </label>
 
                     <!-- Input -->
-                    <input type="email" name="email" value="2524346947@qq.com" class="form-control" placeholder="输入邮箱">
+                    <input type="email" name="email" value="962306215@qq.com" class="form-control" placeholder="输入邮箱">
 
                 </div>
 

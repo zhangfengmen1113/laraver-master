@@ -56,9 +56,7 @@
 
                     </div>
                     <!-- List -->
-
                 </div>
-                {{$actives->links()}}
             </div>
         </div>
     </div>

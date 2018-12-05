@@ -4,9 +4,9 @@
         <div class="col-auto">
 
             <!-- Avatar -->
-            <a href="{{route('index.article.show',$active->causer)}}" class="avatar avatar-sm">
+            <div class="avatar avatar-sm">
                 <img src="{{$active->causer->icon}}" alt="..." class="avatar-img rounded-circle">
-            </a>
+            </div>
         </div>
         <div class="col ml--2">
             <!-- Content -->

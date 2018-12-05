@@ -9,7 +9,7 @@
                     <div class="col">
                         <!-- Title -->
                         <h2 class="header-title">
-                            微信基本回复
+                            微信文本回复
                         </h2>
 
                     </div>
@@ -51,28 +51,32 @@
                     </tr>
                     </thead>
                     <tbody class="list">
-                    @foreach($field as $v)
-{{--                        {{dd($v)}}--}}
+                    @if($field->count()!=0)
+                        @foreach($field as $v)
+                            <tr>
+                                <td>{{$v->id}}</td>
+                                <td>{{$v->rule->name}}</td>
+                                <td>
+                                    {{implode('-',$v->rule->keyword->pluck('key')->toArray())}}
+                                </td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group" aria-label="First group">
+
+                                        <a href="{{route('wechat.reply.edit',$v)}}" class="btn btn-info">编辑</a>
+
+                                        <button onclick="del(this)" type="button" class="btn btn-info">删除</button>
+                                        <form action="{{route('wechat.reply.destroy',$v)}}" method="post">
+                                            @csrf  @method('DELETE')
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @else
                         <tr>
-                            <td>{{$v->id}}</td>
-                            <td>{{$v->rule->name}}</td>
-                            {{--{{dump($v->rule->keyword->pluck('key')->toArray())}}--}}
-                            <td>
-                                {{implode(',',$v->rule->keyword->pluck('key')->toArray())}}
-                            </td>
-                            <td>
-                                <div class="btn-group btn-group-sm" role="group" aria-label="First group">
-
-                                    <a href="{{route('wechat.reply.edit',$v)}}" class="btn btn-white">编辑</a>
-
-                                    <button onclick="del(this)" type="button" class="btn btn-white">删除</button>
-                                    <form action="{{route('wechat.reply.destroy',$v)}}" method="post">
-                                        @csrf  @method('DELETE')
-                                    </form>
-                                </div>
-                            </td>
+                            <td class="text-center text-muted" rowspan="5" colspan="5"><p>暂无文本回复</p></td>
                         </tr>
-                       @endforeach
+                    @endif
                     </tbody>
                 </table>
             </div>

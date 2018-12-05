@@ -14,11 +14,13 @@ class IndexController extends Controller
     public function index(Photo $photo){
         //获取所有动态
         $actives = Activity::latest()->paginate(5);
+        //dd($actives);
         $photos = $photo->all();
         //dd($actives);
-        //foreach($actives as $active){
-        //   	dump($active->causer);
-        //}
+        //dd($photos);
+//        foreach($actives as $active){
+//           	dump($active->causer);
+//        }
 
         //加载模板
         return view('index.index',compact('actives','photos'));

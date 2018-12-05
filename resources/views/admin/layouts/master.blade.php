@@ -135,7 +135,7 @@
                     <a class="nav-link" href="#sidebarWechat" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAuth">
                         <i class="fe fe-message-square"></i> 微信管理
                     </a>
-                    <div class="collapse show" id="sidebarWechat">
+                    <div class="collapse" id="sidebarWechat">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a href="{{route('wechat.button.index')}}" class="nav-link" >
@@ -144,10 +144,19 @@
 
                             </li>
                             <li class="nav-item">
-                                <a href="{{route('wechat.reply.index')}}" class="nav-link" >
+                                <a href="{{route('wechat.focus.create')}}" class="nav-link" >
                                     基本回复
                                 </a>
-
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('wechat.reply.index')}}" class="nav-link" >
+                                    文本回复
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('wechat.teletext.index')}}" class="nav-link" >
+                                    图文回复
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -168,6 +177,26 @@
                     </div>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="#sidebarAuth" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAuth">
+                        <i class="fe fe-user"></i> 权限管理
+                    </a>
+                    <div class="collapse show" id="sidebarAuth">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="#sidebarSignIn" class="nav-link" >
+                                    用户管理
+                                </a>
+                                <a href="{{route('role.role.index')}}" class="nav-link" >
+                                    角色管理
+                                </a>
+                                <a href="{{route('role.permission.index')}}" class="nav-link" >
+                                    权限列表
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link " href="#">
                         <i class="fe fe-git-branch"></i> 系统版本 <span class="badge badge-primary ml-auto">v1.1.2</span>
                     </a>
@@ -175,7 +204,7 @@
 
             </ul>
             <div class="navbar-user mt-auto d-none d-md-flex">
-
+                {{--{{route('member.user.show',auth()->user())}}--}}
                 <a href="{{route('member.user.show',auth()->user())}}" class="btn btn-info" style="text-align: center;display: inline-block;width: 30px;height: 10px;font-size: 12px;line-height: 10px;margin-right: 5px">
                     <p style="text-align: center;margin-top: -5px;margin-left: -3px">❤</p>
                 </a>
@@ -185,7 +214,7 @@
                     <!-- Toggle -->
                     <a href="#!" id="sidebarIconCopy" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div class="avatar avatar-sm avatar-online">
-                            <img src="{{asset('org/img/gyp.jpg')}}" class="avatar-img rounded-circle" alt="...">
+                            <img src="{{auth()->user()->icon}}" class="avatar-img rounded-circle" alt="...">
                         </div>
                     </a>
 

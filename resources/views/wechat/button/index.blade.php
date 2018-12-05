@@ -48,8 +48,9 @@
                         <th>#</th>
                     </tr>
                     </thead>
-                    @if($buttons->count() != 0)
+
                     <tbody class="list">
+                    @if($buttons->count() != 0)
                          @foreach($buttons as $button)
                                 <tr>
                                     <td>{{$button->id}}</td>
@@ -71,13 +72,13 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <a href="{{route('wechat.api.port')}}">666</a>
-
                             @endforeach
-                    </tbody>
                     @else
-                        <p class="text-muted text-center">暂无菜单</p>
-                    @endif
+                     <tr>
+                         <td class="text-center text-muted" rowspan="5" colspan="5"><p>暂无菜单</p></td>
+                     </tr>
+                     @endif
+                    </tbody>
                 </table>
             </div>
         </div>

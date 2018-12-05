@@ -33,7 +33,7 @@ class RepliesController extends Controller
         //dd($request->all());
         DB::beginTransaction();
         //dd($request->data);
-        $rule = $wechatService->ruleStore();
+        $rule = $wechatService->ruleStore('text');
         //dd($rule);
         //添加回复内容
         Replies::create([
@@ -52,20 +52,21 @@ class RepliesController extends Controller
          //dd($replies);
          $ruleView = $wechatService->ruleView($reply['rule_id']);
          //dd($ruleView);
-        return view('wechat.replies.edit',compact('ruleView','reply'));
+         return view('wechat.replies.edit',compact('ruleView','reply'));
     }
 
 
     public function update(Request $request, Replies $reply,WechatService $wechatService)
     {
         //开启事务
+        //dd($reply);
         //dd($request->all());
         DB::beginTransaction();
         //dd($request->data);
         $wechatService->ruleUpload($reply['rule_id']);
         //dd($rule);
         //添加回复内容
-        $reply->create([
+        $reply->update([
             'content'=>$request['data'],
             'rule_id'=>$reply['id'],
         ]);

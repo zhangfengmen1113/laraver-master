@@ -37,6 +37,7 @@ class ButtonController extends Controller
     //微信管理编辑的模板页面
     public function edit(Button $button)
     {
+
         return view('wechat.button.edit',compact('button'));
     }
 
@@ -44,7 +45,10 @@ class ButtonController extends Controller
     public function update(Request $request, Button $button)
     {
         //dd(1);
-        $button->update($request->all());
+        $data = $request->all();
+        //当点击编辑的时候让status变成0 也就是未推送状态
+        $data['status'] = 0;
+        $button->update($data);
         return redirect()->route('wechat.button.index')->with('success','菜单编辑成功');
     }
 
@@ -61,7 +65,7 @@ class ButtonController extends Controller
     public function push(Button $button,WechatService $wechatService)
     {
          //dd(1);
-        //dd($button);
+        //dd($button['data']);
         //dd($wechatService);
         //将原来的数据库json格式的数据转换为数组形式
         $menu = json_decode($button['data'],true);

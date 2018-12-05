@@ -138,7 +138,7 @@
                 </div>
             </div>
         </div>
-        @{{ currentMenu }}
+        {{--@{{ currentMenu }}--}}
     </div>
 @endsection
 @push('css')

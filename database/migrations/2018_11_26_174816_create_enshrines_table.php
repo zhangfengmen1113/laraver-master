@@ -14,6 +14,7 @@ class CreateEnshrinesTable extends Migration
     public function up()
     {
         Schema::create('enshrines', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->unsignedInteger('user_id')->index()->default(0)->comment('用户id');
             $table->unsignedInteger('enshrine_id')->index()->default(0)->comment('文章id/评论id');

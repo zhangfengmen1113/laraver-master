@@ -14,6 +14,7 @@ class CreatebuttonsTable extends Migration
     public function up()
     {
         Schema::create('buttons', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('title')->default('')->comment('菜单标题');
             $table->text('data')->comment('菜单数据');
