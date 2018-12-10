@@ -18,10 +18,10 @@ class AdminAuthMiddleware
         //检测是否登录
         //dd(!auth()->check());
         //dd(auth()->user());
-        if(!auth()->check() || auth()->user()->is_admin != 1){
+        // is_admin == 1
+        if(!auth()->check() || !auth()->user()->can('Admin~admin~index')){
              return redirect()->route('index');
         }
-
         return $next($request);
     }
 }

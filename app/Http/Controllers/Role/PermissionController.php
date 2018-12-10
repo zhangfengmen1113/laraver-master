@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 
 class PermissionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin.auth', [
+            'except' => [],
+        ]);
+    }
+
     //权限列表
     public function index(){
         //获取modules所有数据

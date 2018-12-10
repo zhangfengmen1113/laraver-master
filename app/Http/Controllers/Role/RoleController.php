@@ -3,12 +3,19 @@
 namespace App\Http\Controllers\Role;
 
 use App\Http\Controllers\Controller;
+use App\Models\Module;
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 
 class RoleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin.auth', [
+            'except' => [],
+        ]);
+    }
 
     public function index()
     {
@@ -77,5 +84,23 @@ class RoleController extends Controller
         $role->delete();
         return redirect()->route('role.role.index')->with('success','删除成功');
 
+    }
+
+    //设置权限的模板页面
+    public function show(Role $role)
+    {
+        $modules = Module::all();
+        //dump($modules->toArray());
+        return view('role.role.give_permission',compact('modules','role'));
+    }
+
+    //设置权限功能的页面
+    public function setRolePermission(Role $role,Request $request)
+    {
+        //dd($request->all());
+        //dump($request->all());die();
+        //给角色添加权限
+        $role->syncPermissions($request->permission);
+        return redirect()->route('role.role.index')->with('success','设置成功');
     }
 }

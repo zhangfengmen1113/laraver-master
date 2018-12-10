@@ -57,6 +57,7 @@ class HdModule extends Command
         foreach ($modules as $module){
             //目录
             //dump($module);
+            //判断是否存在这个名为System这个目录
             if(is_dir($module . '/System')){
                  //dump($module);
                  //获取整个目录最后的一部分 获取模块英文标识
@@ -75,7 +76,7 @@ class HdModule extends Command
                  ])->save();
                  //dump($permission);
                  //将所有的权限写入数据库
-                 //执行这句代码，把数据传入数据库里面 modules:name title permission
+                 //执行这句代码，把数据传入数据库里面 permissions:name title
                 foreach($permissions as $permission){
                     Permission::firstOrNew(['name'=>$system . '~' . $permission['name']])->fill([
                         'title'=>$permission['title'],

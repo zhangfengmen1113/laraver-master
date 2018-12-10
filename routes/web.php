@@ -108,4 +108,12 @@ Route::group(['prefix'=>'role','namespace'=>'Role','as'=>'role.'],function (){
     Route::resource('role','RoleController');
     //权限列表
     Route::get('permission/index','PermissionController@index')->name('permission.index');
+    //设置权限
+    Route::post('role/set_role_permission/{role}','RoleController@setRolePermission')->name('role.set_role_permission');
+    //用户管理
+    Route::get('user/index','UserController@index')->name('user.index');
+    //展示用户
+    Route::get('user/set_role_create/{user}','UserController@setUserRoleCreate')->name('user.set_role_create');
+    //设置角色完成
+    Route::post('user/set_role_store/{user}','UserController@setUserRoleStore')->name('user.set_role_store');
 });

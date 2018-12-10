@@ -22,3 +22,12 @@ if (!function_exists('hd_config')){
 
     }
 }
+
+//检测当前用户是否为设置的那个角色
+function hdHasRole($role){
+
+    if(!auth()->user()->hasRole($role)){
+
+        throw new \App\Exceptions\AuthException('别进来了，兄弟~');
+    }
+}
